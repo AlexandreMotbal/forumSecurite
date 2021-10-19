@@ -10,10 +10,11 @@ function addFriend(){
         }
 
         if(isset($_SESSION["id"],$_POST["mailAdd"]) && $_SESSION['logged']){
+            $idUser = _getId($_SESSION['id']);
             $mailAdd = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $_POST["mailAdd"]));
             $idAdd = _getIdByMail($mailAdd); 
             if($idAdd){
-                _addFriend(_getIdUser($_SESSION["id"]),$idAdd);
+                _addFriend(_getIdUser($idUser,$idAdd);
             }
         }
     }
