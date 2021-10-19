@@ -1,0 +1,54 @@
+a:link{
+    font-style: none;
+    color:#FF7315;
+}
+#left{
+    margin-top: 12%;
+}
+#welcome{
+    color:#FF7315;
+    font-size: 600%;
+    font-weight: bold;
+
+    margin-bottom: -6%;
+}
+#subtitle{
+    color: #3A3535;
+    margin-top:15px;
+    font-size: 350%;
+}
+#subtext{
+    margin-top: -4%;
+}
+
+
+#btn_account{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    font-size: 200%;
+}
+@keyframes survol{
+    from{width:100%}
+    to{width:105%}
+    
+}
+#btn_account:hover {
+    animation-name:survol;
+    animation-duration:0.5 s;
+}
+#left_text{
+    width: 60%;
+}
+#next{
+    display: flex;
+    flex-direction: row;
+    margin-top: 45%;
+    font-size: 160%;
+    color:#FF7315;
+}
+#start{
+    font-weight: bold;
+}

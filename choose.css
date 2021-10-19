@@ -1,0 +1,23 @@
+#choose{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 100%;
+    margin-top: 12%;
+}
+.card{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: baseline;
+    padding: 3%;
+    width: 5%;
+
+}
+img{
+    
+}
+p{
+    width: 100%;
+}

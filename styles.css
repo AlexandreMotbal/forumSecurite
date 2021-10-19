@@ -1,0 +1,22 @@
+body{
+    background-color: #232020;
+    color: #F4F4F4;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+a{
+    color: #F4F4F4;
+    text-decoration: none;
+}
+a:link{
+    color: #F4F4F4;
+    text-decoration: none;
+}
+a:visited{
+    color: #F4F4F4;
+    text-decoration: none;
+}
