@@ -5,7 +5,6 @@ $_ENV['conn'] = connect();
 
 //ChangementMail Verification
 
-
 function _getUserById($idUser){
     $return = [];
     $idUser = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idUser));
@@ -31,6 +30,21 @@ function _getIdByMail($mail){
     $mail = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $mail));
     $request = 'SELECT id FROM users WHERE users.mail = "%s"';
     $request = sprintf($request, $mail);
+    $result = $_ENV['conn']->query($request);
+    $result = $result->fetch_all();
+    if($result){
+        return $result[0][0];
+    }
+    else{
+        return False;
+    }
+}
+
+//get id by pseudo
+function _getIdPseudo($pseudo){
+    $mail = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $pseudo));
+    $request = 'SELECT id FROM users WHERE users.pseudo = "%s"';
+    $request = sprintf($request, $pseudo);
     $result = $_ENV['conn']->query($request);
     $result = $result->fetch_all();
     if($result){
@@ -82,11 +96,45 @@ function _getIdUser($idLog){
         return False;
     }
 }
-
+/*
 //Ajout d'ami
 function _addFriend($idUser, $idAdd){
     $idUser = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idUser));
     $idAdd = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idAdd));
+    $return = false;
+    if(!(_checkFriend($idUser, $idAdd))){
+        $request = 'SELECT ami FROM users WHERE users.id = "%s"';
+        $request = sprintf($request, $idUser);
+        $result = $_ENV['conn']->query($request);
+    
+        $result = $result->fetch_all();
+        $result = json_decode($result[0][0], true);
+        $result[] = strval($idAdd);
+        $result = mysqli_real_escape_string($_ENV['conn'], json_encode($result));
+        $request = 'UPDATE `users` SET `ami` = "%s" WHERE `users`.`id` = "%s";';
+        $request = sprintf($request, $result, $idUser);
+        $result = $_ENV['conn']->query($request);
+    
+        if($result){
+            echo "<script> alert('Ajout bien effectué') </script>"; 
+            return true;
+        }
+        else{
+            echo "<script> alert('lecture impossible') </script>"; 
+            return False;
+        }
+    }
+    else{
+        echo "<script> alert('Vous êtes déjà ami') </script>"; 
+        return False;
+    }
+}
+*/
+
+//Ajout d'ami
+function _addFriend($idUser, $friend_mail){
+    $idUser = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idUser));
+    $friend_mail = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $friend_mail));
     $return = false;
     if(!(_checkFriend($idUser, $idAdd))){
         $request = 'SELECT ami FROM users WHERE users.id = "%s"';
