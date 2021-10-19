@@ -49,13 +49,6 @@
             }
             else{
                 print($_SESSION['pseudo']);
-                /* print('
-                    <form action="functions/connectionController.php" method="post">
-                        <p>Ajouter un ami :</p>
-                        <p>Mail de votre amis : <input id="friend_mail" type="text" name="friend_mail" /></p>
-                        <p><input type="button" onClick="addFriend()" value="OK"></p>
-                    </form>
-                ');*/
                 print(' vos amis sont :');
 
                 if(isset($_SESSION["id"]) && $_SESSION['logged']){
