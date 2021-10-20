@@ -3,7 +3,6 @@ require_once 'utilisateurModel.php';
 
 //FRIEND
 function addFriend(){
-    var_dump('test');
     if(isset($_COOKIE['session']) ){
         if(!(session_status() == PHP_SESSION_ACTIVE)){
             session_id($_COOKIE['session']);
