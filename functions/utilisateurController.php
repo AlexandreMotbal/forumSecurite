@@ -3,15 +3,16 @@ require_once 'utilisateurModel.php';
 
 //FRIEND
 function addFriend(){
+    var_dump('test');
     if(isset($_COOKIE['session']) ){
         if(!(session_status() == PHP_SESSION_ACTIVE)){
             session_id($_COOKIE['session']);
             session_start();
         }
 
-        if(isset($_SESSION["id"],$_POST["mailAdd"]) && $_SESSION['logged']){
-            $mailAdd = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $_POST["mailAdd"]));
-            $idAdd = _getIdByMail($mailAdd); 
+        if(isset($_SESSION["id"],$_POST["friend_mail"]) && $_SESSION['logged']){
+            $friend_mail = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $_POST["friend_mail"]));
+            $idAdd = _getIdByMail($friend_mail); 
             if($idAdd){
                 _addFriend(_getIdUser($_SESSION["id"]),$idAdd);
             }

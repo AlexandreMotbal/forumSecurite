@@ -132,18 +132,23 @@ function _addFriend($idUser, $idAdd){
 */
 
 //Ajout d'ami
-function _addFriend($idUser, $friend_mail){
+function _addFriend($idUser, $idAdd){
     $idUser = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idUser));
-    $friend_mail = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $friend_mail));
+    $idAdd = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idAdd));
     $return = false;
     if(!(_checkFriend($idUser, $idAdd))){
-        $request = 'SELECT ami FROM users WHERE users.id = "%s"';
-        $request = sprintf($request, $idUser);
-        $result = $_ENV['conn']->query($request);
-    
-        $result = $result->fetch_all();
-        $result = json_decode($result[0][0], true);
-        $result[] = strval($idAdd);
+        if(!(_checkFriendList($idUser))){
+            $result = ["1"=>strval($idAdd)];
+        }
+        else{
+            $request = 'SELECT ami FROM users WHERE users.id = "%s"';
+            $request = sprintf($request, $idUser);
+            $result = $_ENV['conn']->query($request);
+        
+            $result = $result->fetch_all();
+            $result = json_decode($result[0][0], true);
+            $result[] = strval($idAdd);
+        }
         $result = mysqli_real_escape_string($_ENV['conn'], json_encode($result));
         $request = 'UPDATE `users` SET `ami` = "%s" WHERE `users`.`id` = "%s";';
         $request = sprintf($request, $result, $idUser);
@@ -209,6 +214,26 @@ function _deleteFriend($idUser, $idDelFriend){
     return $return;
 }
 
+
+//Check ami
+function _checkFriendList($idUser){
+    $idUser = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idUser));
+    $return = false;
+
+    $request = 'SELECT ami FROM users WHERE users.id = "%s"';
+    $request = sprintf($request, $idUser);
+    $result = $_ENV['conn']->query($request);
+    if ($result){
+        $result = $result->fetch_all();
+        $result = json_decode($result[0][0]);
+        if($result){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
 //Check ami
 function _checkFriend($idUser, $idFriend){
     $idUser = htmlspecialchars(mysqli_real_escape_string($_ENV['conn'], $idUser));
@@ -223,10 +248,15 @@ function _checkFriend($idUser, $idFriend){
     if ($result){
         $result = $result->fetch_all();
         $result = json_decode($result[0][0]);
-        foreach($result as $key => $value) {
-            if($value == $idFriend){
-                $return = true;
+        if($result){
+            foreach($result as $key => $value) {
+                if($value == $idFriend){
+                    $return = true;
+                }
             }
+        }
+        else{
+            return false;
         }
     }
     else {
