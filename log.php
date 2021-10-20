@@ -100,7 +100,6 @@
             data: { mailAdd: $('input#friendMail').val()},
             
             success: function (data, status, xhr) {
-                eval(data);
             },
             error: function (jqXhr, textStatus, errorMessage) { 
                 alert('Erreur');
