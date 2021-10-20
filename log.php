@@ -32,7 +32,11 @@
     </head>
 
     <body>
-            
+        <form action="functions/addFriendController.php" method="post">
+            <p>Ajoutez des amis</p>
+            <input id="pass" type="text" name="friendMail" />
+            <p><input type="button" onClick="addFriends()" value="OK"></p>
+        </form>
         <?php
             if(!$_SESSION['logged']){
                 print('
