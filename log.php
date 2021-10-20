@@ -51,7 +51,7 @@
                 print('
                     <form action="functions/addFriendController.php" method="post">
                         <p>Ajoutez des amis</p>
-                        <input id="friendMail" type="text" name="friendMail" />
+                        <input id="friendMail" type="text" name="mailAdd" />
                         <p><input type="button" onClick="addFriends()" value="OK"></p>
                     </form>
                 ');
@@ -86,6 +86,21 @@
                 } else {
                     alert('Bad login');
                 }
+            },
+            error: function (jqXhr, textStatus, errorMessage) { 
+                alert('Erreur');
+        }});
+        }
+
+        function addFriends(){
+            //
+            $.ajax('functions/addFriendController.php', {
+            type: 'POST',
+            dataType: 'json',
+            data: { mailAdd: $('input#friendMail').val()},
+            
+            success: function (data, status, xhr) {
+                eval(data);
             },
             error: function (jqXhr, textStatus, errorMessage) { 
                 alert('Erreur');
