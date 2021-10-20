@@ -32,11 +32,7 @@
     </head>
 
     <body>
-        <form action="functions/addFriendController.php" method="post">
-            <p>Ajoutez des amis</p>
-            <input id="friendMail" type="text" name="friendMail" />
-            <p><input type="button" onClick="addFriends()" value="OK"></p>
-        </form>
+        
         <?php
             if(!$_SESSION['logged']){
                 print('
@@ -52,6 +48,13 @@
                     ');
             }
             else{
+                print('
+                    <form action="functions/addFriendController.php" method="post">
+                        <p>Ajoutez des amis</p>
+                        <input id="friendMail" type="text" name="friendMail" />
+                        <p><input type="button" onClick="addFriends()" value="OK"></p>
+                    </form>
+                ');
                 print($_SESSION['pseudo']);
                 print(' vos amis sont :');
 
