@@ -96,7 +96,6 @@
             //
             $.ajax('functions/addFriendController.php', {
             type: 'POST',
-            dataType: 'json',
             data: { friend_mail: $('input#friendMail').val()},
             
             success: function (data, status, xhr) {
