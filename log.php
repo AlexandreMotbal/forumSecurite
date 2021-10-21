@@ -52,7 +52,7 @@
                     <form action="functions/addFriendController.php" method="post">
                         <p>Ajoutez des amis</p>
                         <input id="friendMail" type="text" name="mailAdd" />
-                        <p><input type="button" onClick="addFriends()" value="OK"></p>
+                        <input type="button" onClick="addFriends()" value="OK">
                     </form>
                 ');
                 print($_SESSION['pseudo']);
