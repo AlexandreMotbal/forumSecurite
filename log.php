@@ -100,6 +100,7 @@
             data: { friend_mail: $('input#friendMail').val()},
             
             success: function (data, status, xhr) {
+                console.log("ok");
             },
             error: function (jqXhr, textStatus, errorMessage) { 
                 alert('Erreur');
